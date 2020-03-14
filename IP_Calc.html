@@ -1,0 +1,147 @@
+<HTML>
+<HEAD>
+<TITLE>IP Calc</TITLE>
+
+<SCRIPT language="JavaScript">
+
+function inet_pton(str){
+    var octet = str.split(".");
+    var a,b,c,d,n;
+
+    a = octet[0];
+    b = octet[1];
+    c = octet[2];
+    d = octet[3];
+
+    n = (( Number(a) * 256 + Number(b) ) * 256 + Number(c) ) * 256 + Number(d);
+
+    return n;
+}
+
+function inet_ntop(ip){
+    var a,b,c,d,str;
+
+    d = ( ip & 0xff ); ip >>= 8;
+    c = ( ip & 0xff ); ip >>= 8;
+    b = ( ip & 0xff ); ip >>= 8;
+    a = ( ip & 0xff ); ip >>= 8;
+    
+//    if (ip != 0){
+//        alert("malformed ip: " + ip);
+//    }
+
+    str = a + "." + b + "." + c + "." + d;
+    return str;
+}
+
+function inet_ntophex(ip){
+    var a,b,c,d,str,h;
+
+    d = ( ip & 0xff ); ip >>= 8;
+    c = ( ip & 0xff ); ip >>= 8;
+    b = ( ip & 0xff ); ip >>= 8;
+    a = ( ip & 0xff ); ip >>= 8;
+
+//    if (ip != 0){
+//        alert("malformed ip: " + ip);
+//    }
+
+    str = "0x";
+    h= a.toString(16); if (h.length == 1){ str += "0"; }    str+=h; 
+    h= b.toString(16); if (h.length == 1){ str += "0"; }    str+=h; 
+    h= c.toString(16); if (h.length == 1){ str += "0"; }    str+=h; 
+    h= d.toString(16); if (h.length == 1){ str += "0"; }    str+=h;
+    
+    return str;
+}
+
+function ipcalc()
+{
+    var netbits;
+    var ip, ipstr, ipxstr;
+    var netmask, netmaskstr, netmaskxstr;
+    var net, netstr, netxstr;
+    var bcast, bcaststr, bcastxstr;
+    var host, hoststr, hostxstr;
+    var firsthost, firsthoststr, firsthostxstr;
+    var lasthost, lasthoststr, lasthostxstr;
+
+    ipstr = document.form.ipstr.value;
+    netbits = document.form.netbits.value;
+
+    if (ipstr == ""){
+	alert("IP invalide !");
+	return false;
+    }
+    if (netbits == ""){
+	alert("Netbits invalide !");
+	return false;
+    }
+
+    ip = inet_pton(ipstr);
+
+    netmask     = ((1 << (netbits)) - 1) << (32-netbits);
+    netmaskstr  = inet_ntop(netmask);
+    netmaskxstr = inet_ntophex(netmask);
+    
+    net = ip & netmask;
+    netstr = inet_ntop(net);
+    netxstr = inet_ntophex(net);
+    
+    host     = ip & (~netmask);
+    hoststr  = inet_ntop(host);
+    hostxstr = inet_ntophex(host);
+    
+    bcast    = net | (~netmask);
+    bcaststr  = inet_ntop(bcast);
+    bcastxstr = inet_ntophex(bcast);
+    
+    firsthost=net+1;
+    firsthoststr  = inet_ntop(firsthost);
+    firsthostxstr = inet_ntophex(firsthost);
+    
+    lasthost=bcast-1;
+    lasthoststr  = inet_ntop(lasthost);
+    lasthostxstr = inet_ntophex(lasthost);
+    
+    document.form.netmaskstr.value  = netmaskstr;
+    document.form.netmaskxstr.value = netmaskxstr;
+    document.form.netstr.value  = netstr;
+    document.form.netxstr.value = netxstr;
+    document.form.hoststr.value  = hoststr;
+    document.form.hostxstr.value = hostxstr;
+    document.form.bcaststr.value  = bcaststr;
+    document.form.bcastxstr.value = bcastxstr;
+    document.form.firsthoststr.value  = firsthoststr;
+    document.form.firsthostxstr.value = firsthostxstr;
+    document.form.lasthoststr.value  = lasthoststr;
+    document.form.lasthostxstr.value = lasthostxstr;
+
+    return false;
+}
+</SCRIPT>
+
+</HEAD>
+<BODY>
+
+<H1>IP-Calc</H1>
+
+<FORM NAME="form">
+<TABLE>
+<TR><TD>IP-Nummer:    <TD> <INPUT VALUE="192.168.1.1" NAME="ipstr">      <TD> 
+<TR><TD>Anzahl Netbits:   <TD> <INPUT VALUE="24" NAME="netbits">    <TD>
+<TR><TD>             <TD> <INPUT TYPE=button VALUE="Calculer !"  onClick="ipcalc();"> <TD>
+<TR><TD COLSPAN=3> <HR>
+<TR><TD>Netmask:     <TD> <INPUT NAME="netmaskstr"> <TD> =&nbsp;<INPUT NAME="netmaskxstr">
+<TR><TD>Net:         <TD> <INPUT NAME="netstr"> <TD> =&nbsp;<INPUT NAME="netxstr">
+<TR><TD>Broadcast:   <TD> <INPUT NAME="bcaststr"> <TD> =&nbsp;<INPUT NAME="bcastxstr">
+<TR><TD>Host-ID:        <TD> <INPUT NAME="hoststr"> <TD> =&nbsp;<INPUT NAME="hostxstr">
+<TR><TD>First Host:  <TD> <INPUT NAME="firsthoststr"> <TD> =&nbsp;<INPUT NAME="firsthostxstr">
+<TR><TD>Last Host:   <TD> <INPUT NAME="lasthoststr"> <TD> =&nbsp;<INPUT NAME="lasthostxstr">
+</TABLE>
+</FORM>
+
+<HR>
+
+</BODY>
+</HTML>
