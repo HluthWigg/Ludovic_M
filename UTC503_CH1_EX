@@ -1,0 +1,104 @@
+***************************
+***    CNAM - UTC503    ***
+***    Ludovic MARIN    ***
+***************************
+
+Pour répondre à ces questions, je me suis appuyé sur quelques connaissances personnelles mais également sur quelques
+recherches sur Internet.
+
+
+
+*** Section 01 - Introduction ***
+*************************
+
+
+*** Déclaration vs définition ***
+
+La déclaration permet d'informer le compilateur de l'existence d'une entitée informatique (variable, fonction,...).
+Dans ce cas, il n'y a pas d'allocation de la mémoire.
+
+La définition est l'instance de la déclaration. On y assigne une valeur.
+Il y a allocation de la mémoire.
+
+Pour illustrer, voici deux exemples de déclaration et de définition en C :
+
+extern int variable; /* déclaration de variable - ici la variable est déclarée mais non allouée en mémoire */
+int variable = 503; /* définition de variable - on alloue en mémoire la variable avec une initialisation à la valeur de 503 */
+
+// déclaration d'une fonction
+void fonction();
+
+// implémentation de la fonction
+void fonction() {
+    printf("fonction invoquée");
+}
+
+*** Fonction vs procédure vs méthode ***
+
+Une procédure exécute des instructions sans renvoyer de résultat.
+Une fonction exécute des instructions en renvoyant un résultat.
+Une méthode est une fonction rattachée à une classe. "Méthode" est un terme employé ainsi dans un environnement orienté objet.
+
+Pour illustrer la différence entre procédure et fonction (grossièrement) :
+// procédure
+void procedure()
+{
+}
+
+// fonction
+type fonction()
+{
+    return valeur;
+}
+
+
+*** Paradigme CSS ***
+
+Le CSS n'est pas un langage de programmation à proprement parlé.
+Cependant il pourrait être naturel de le considérer comme un langage de programmation orienté objet.
+En effet, il propose (de loin) la même chose : un nom de classe dans lequel sont encapsulé des propriétés qui la définissent.
+D'ailleur, Nicole Sullivan a proposé il y a quelques années d'appliquer la métaphore OOP au CSS :
+OOCSS (pour "Object-Oriented CSS").
+Etant donné que CSS permet dans une page Web de contrôler le style d'un contenu, il pourrait être intéressant de considérer alors
+le CSS comme ayant un paradigme "fonctionnel".
+
+
+*** Paradigme Assembleur ***
+
+L'assembleur est un langage machine "humanisé". J'aurais tendance à le classer dans un "langage de programmation impératif".
+
+
+*** Intégrer un paradigme à un langage ***
+
+Il existe, dans certain langage, des librairies permettant d'ajouter un paradigme.
+Il est également possible de créer des fonctions.
+Prenons pour exemple une méthode décrite dans cet article permettant de manipuler des objets avec le C :
+https://chgi.developpez.com/c/objet/
+
+
+*** Hello World ***
+
+*** Scheme ***
+
+(display "Hello World")
+(newline)
+
+
+*** SmallTalk ***
+
+Transcript show: 'Hello, world!'.
+
+
+*** TypeScript ***
+
+function hw() {
+    return "Hello World ";
+}
+
+document.body.innerHTML = hw();
+
+
+*** Prolog ***
+
+:- initialization(main).
+main :- write('Hello World!').
