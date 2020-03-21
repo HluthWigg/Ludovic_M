@@ -45,7 +45,7 @@ void mapMaximize3(int e[], int r[]) {
 }
 
 int main() {
-    int e[5] = {1, 5, 2 , 4, 3};
+    int e[5] = {1, 5, 2, 4, 3};
     int r_double[N];
     mapDouble(e, r_double); // r_double contiendra {2, 10, 4, 8, 6}
     int r_triple[N];
