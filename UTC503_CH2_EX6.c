@@ -1,3 +1,4 @@
+#include <stdio.h>
 #define N 5
 
 // Aide : lire la ième case du tableau e : e[i]

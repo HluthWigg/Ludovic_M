@@ -1,3 +1,4 @@
+#include <stdio.h>
 #define N 5
 
 // Factorisation du code avec la structure "switch"
