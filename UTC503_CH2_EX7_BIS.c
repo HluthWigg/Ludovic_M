@@ -2,33 +2,30 @@
 #include <math.h>
 #define N 5
 
-// Factorisation du code avec un "callback"
+// Factorisation du code avec une fonction de "callback"
 
 int multiply(int e, int option)
 {
-    int r;
-    return r = e * option;
+    return e * option;
 }
 
 int power(int e, int option)
 {
-    int r;
-    return r = pow(e,option);
+    return pow(e,option);
 }
 
 int maximize(int e, int option)
 {
-    int r;
     if (e > option)
     {
-        r = 3;
+        return 3;
     }
     else
     {
-        r = e;
+        return e;
     }
-    return r;
 }
+
 
 int operation(int e[], int r[], int (*ptr)(), int option)
 {
@@ -43,7 +40,7 @@ int operation(int e[], int r[], int (*ptr)(), int option)
 
 int main()
 {
-    int e[5] = {1, 5, 2, 4, 3};                 // tableau d'éléments
+    int e[5] = {1, 5, 2, 4, 3};                 // initialisation du tableau d'éléments
     int r_double[N];                            // r_double contiendra {2, 10, 4, 8, 6}
     operation(e, r_double, &multiply, 2);
     int r_triple[N];                            // r_triple contiendra {3, 15, 6, 12, 9}
