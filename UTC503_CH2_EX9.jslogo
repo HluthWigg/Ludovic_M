@@ -1,0 +1,24 @@
+// https://www.calormen.com/jslogo/
+
+TO star
+    repeat 5 [
+        fd 50
+        lt 72
+        fd 50
+        rt 144
+    ]
+    penup
+    setx xcor + 150
+    pendown
+END
+
+clearscreen
+setpencolor 14 
+seth 90 
+penup
+setx xcor + 770
+pendown
+repeat 5 [
+    star
+]
+hideturtle
