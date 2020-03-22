@@ -4,24 +4,24 @@
 
 // Factorisation du code avec une fonction de "callback"
 
-// Fonction multiplication e * option
-int multiply(int e, int option)
+// Fonction multiplication e * mult
+int multiply(int e, int mult)
 {
-    return e * option;
+    return e * mult;
 }
 
-// Fonction puissance e ** option
-int power(int e, int option)
+// Fonction puissance e ** exp
+int power(int e, int exp)
 {
-    return pow(e,option);
+    return pow(e, exp);
 }
 
-// Fonction valeur max = option
-int maximize(int e, int option)
+// Fonction valeur max
+int maximize(int e, int max)
 {
-    if (e > option)
+    if (e > max)
     {
-        return option;
+        return max;
     }
     else
     {
@@ -32,9 +32,8 @@ int maximize(int e, int option)
 // Fonction de "callback"
 int operation(int e[], int r[], int (*ptr)(), int option)
 {
-    int elements = N;
     int n;
-    for (n = 0; n < elements; n++)
+    for (n = 0; n < N; n++)
     {
        r[n] = (*ptr)(e[n], option);
     }
